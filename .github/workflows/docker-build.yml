@@ -17,6 +17,12 @@ jobs:
         run: |
           pip install ruff
           ruff check .
+          echo "Ruff check passed" >> $GITHUB_STEP_SUMMARY
+      - name: setup pytest
+        run: |
+          pip install pytest
+          pythom -m pytest
+          echo "pytest passed" >> $GITHUB_STEP_SUMMARY
       - name: docker build
         run: |
           docker build -t python:v1 .
