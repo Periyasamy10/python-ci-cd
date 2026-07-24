@@ -1,0 +1,19 @@
+name: Python Build
+on: 
+  push:
+    branches:
+      - main
+
+permission:
+  content: write
+
+jobs:
+  python-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: docker build
+        run: |
+          docker build -t python:v1 .
+
