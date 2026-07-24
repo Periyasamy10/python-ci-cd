@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: setup ruff
+        run: |
+          pip install ruff
+          ruff check .
       - name: docker build
         run: |
           docker build -t python:v1 .
