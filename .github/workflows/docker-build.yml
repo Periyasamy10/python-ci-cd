@@ -13,14 +13,16 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: setup python package
+        run: |
+          pip install -r requirement.txt
+          echo "Packages Installed" >> $GITHUB_STEP_SUMMARY
       - name: setup ruff
         run: |
-          pip install ruff
           ruff check .
           echo "Ruff check passed" >> $GITHUB_STEP_SUMMARY
       - name: setup pytest
         run: |
-          pip install pytest
           python -m pytest
           echo "pytest passed" >> $GITHUB_STEP_SUMMARY
       - name: docker build
