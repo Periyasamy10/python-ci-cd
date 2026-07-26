@@ -31,8 +31,8 @@ jobs:
     environment: ${{ inputs.env }}
 
     outputs:
-      image_tag = ${{ steps.vars.outputs.IMAGE_TAG }}
-      short_sha = ${{ steps.vars.outputs.SHORT_SHA }}
+      image_tag: ${{ steps.vars.outputs.IMAGE_TAG }}
+      short_sha: ${{ steps.vars.outputs.SHORT_SHA }}
 
     steps:
       - name: checkout
