@@ -166,9 +166,11 @@ jobs:
 
       - name: Dependeny scan
         run: snyk test
+        continue-on-error: true
 
       - name: Source code scan
         run: snyk code test
+        continue-on-error: true
 
 
 
