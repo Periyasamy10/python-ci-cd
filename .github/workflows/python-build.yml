@@ -29,6 +29,12 @@ jobs:
         with:
           fetch-depth: 1
       
+      - name: Print Role ARN
+        run: |
+          echo "${ROLE}"
+        env:
+          ROLE: ${{ secrets.ROLE_TO_ASSUME }}
+      
       - name: Debug
         run: |
           echo "Environment = ${{ inputs.env }}"
