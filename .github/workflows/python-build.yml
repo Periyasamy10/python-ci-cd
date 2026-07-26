@@ -43,6 +43,15 @@ jobs:
         env:
           ROLE: ${{ secrets.ROLE_TO_ASSUME }}
       
+      - name: Debug GitHub Context
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Environment: ${{ inputs.env }}"
+      
+      - name: Dump OIDC token claims
+        uses: github/actions-oidc-debugger@v1
+      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
