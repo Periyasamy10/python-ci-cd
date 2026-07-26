@@ -9,6 +9,7 @@ on:
         description: "Environment"
         required: false
         default: dev
+        type: string
 
 permissions:
   contents: read
