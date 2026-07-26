@@ -26,3 +26,4 @@ jobs:
     uses: ./.github/workflows/quality.yml
     with:
       env: ${{ inputs.env || 'dev' }}
+    secrets: inherit
