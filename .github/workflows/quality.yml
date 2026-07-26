@@ -8,7 +8,9 @@ on:
         default: dev
         type: string
     outputs:
-      image_tag: ${{ jobs.prepare.outputs.image_tag }}
+      image_tag: 
+        description: "Image Tag"
+        value: ${{ jobs.prepare.outputs.image_tag }}
 
 permissions:
   contents: read
