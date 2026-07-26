@@ -33,5 +33,5 @@ jobs:
     needs: Quality-Check
     with:
       env: ${{ inputs.env || 'dev' }}
-      image_tag: ${{ needs.Quality-Check.outputs.image_tag }}
+      image-tag: ${{ needs.Quality-Check.outputs.image_tag }}
     secrets: inherit

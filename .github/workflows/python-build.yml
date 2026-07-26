@@ -49,7 +49,7 @@ jobs:
           context: .
           push: false
           tags:
-            ${{ steps.login-ecr.outputs.registry }}/${{ vars.REPO }}:${{ inputs.image_tag }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ vars.REPO }}:${{ inputs.image-tag }}
           cache-from: type=gha
           cache-to: type=gha, mode=max
           outputs: type=docker
