@@ -10,8 +10,7 @@ on:
       image-tag:
         description: "Image Tag"
         required: true
-        type: string
-        default: latest  
+        type: string 
       aws-region:
         description: "Region"
         type: string
