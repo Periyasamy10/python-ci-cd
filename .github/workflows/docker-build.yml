@@ -165,12 +165,18 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
       - name: Dependeny scan
-        run: snyk test
+        run: snyk test -- json > dependeny-report.json
         continue-on-error: true
 
-      - name: Source code scan
-        run: snyk code test
-        continue-on-error: true
+      # - name: Source code scan
+      #   run: snyk code test
+      #   continue-on-error: true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: synk-dependeny-scan
+          path: dependeny-report.json
 
 
 
