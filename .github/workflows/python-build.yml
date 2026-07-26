@@ -32,7 +32,7 @@ jobs:
       - name: Debug
         run: |
           echo "Environment = ${{ inputs.env }}"
-          echo "Region = ${{ inputs.aws-region }}"
+          echo "Region = ${{ vars.AWS_REGION }}"
           echo "Role Length = ${#ROLE}"
         env:
           ROLE: ${{ secrets.ROLE_TO_ASSUME }}
@@ -41,7 +41,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-          aws-region: ${{ vars.aws-region }}
+          aws-region: ${{ vars.AWS_REGION }}
       
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
