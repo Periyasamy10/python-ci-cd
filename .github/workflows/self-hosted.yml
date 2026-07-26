@@ -1,0 +1,23 @@
+name: Self Hosted Runner Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Runner Details
+        run: |
+          echo "Runner Name : $RUNNER_NAME"
+          echo "Runner OS   : $RUNNER_OS"
+          echo "Runner Arch : $RUNNER_ARCH"
+          hostname
+          pwd
+
+      - name: List Repository Files
+        run: ls -la
