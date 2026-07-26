@@ -193,7 +193,7 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "There is no secret leaked !!" >> $GITHUB_STEP_SUMMARY  
+         
     
   Quality-gate:
     runs-on: ubuntu-latest
