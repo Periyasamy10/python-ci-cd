@@ -29,7 +29,7 @@ jobs:
     secrets: inherit
   
   Python-Build:
-    uses: ./.github/workflows/python-ci.yml
+    uses: ./.github/workflows/python-build.yml
     needs: Quality-Check
     with:
       env: ${{ inputs.env || 'dev' }}
