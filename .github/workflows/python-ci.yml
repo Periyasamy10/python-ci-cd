@@ -21,6 +21,6 @@ concurrency:
 
 jobs:
   Quality-Check:
-    uses: ./quality.yml
+    uses: ./quality.yml@main
     with:
       env: ${{ inputs.env || 'dev' }}
