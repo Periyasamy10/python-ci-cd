@@ -1,9 +1,6 @@
-name: Python Build
+name: Quality Check
 on: 
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_call:
     inputs:
       env:
         description: "environment"
@@ -205,6 +202,18 @@ jobs:
       - name: All checks passed
         run: |
           echo "Quality Gate Passed"
+  
+  # Docker-build:
+  #   runs-on: ubuntu-latest
+  #   environment: ${{ inputs.env || 'dev' }}
+  #   needs: ["prepare", "Quality-gate"]
+  #   timeout-minutes: 15
+
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v4
+  #       with:
+          
 
 
 

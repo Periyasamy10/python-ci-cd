@@ -1,0 +1,22 @@
+name: Python build
+on:
+  push:
+    branches:
+     - main
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment"
+        required: false
+        default: dev
+
+permissions:
+  contents: read
+  id-token: write
+  secret-scan: write
+
+jobs:
+  Quality-Check:
+    uses: ./quality.yml
+    with:
+      env: ${{ inputs.env || 'dev' }}
