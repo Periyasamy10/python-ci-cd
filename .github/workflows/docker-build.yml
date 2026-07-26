@@ -5,27 +5,58 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  id-token: write
+  security-events: write
+
+concurrency:
+  group: python-ci-${{ github.ref }}
+  cancel_in_progress: true
+
+env:
+  PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+
+environment: dev
 
 jobs:
-  python-build:
+  prepare:
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout
-        uses: actions/checkout@v4
-      - name: setup python package
-        run: |
-          pip install -r requirements.txt
-          echo "Packages Installed" >> $GITHUB_STEP_SUMMARY
-      - name: setup ruff
-        run: |
-          ruff check .
-          echo "Ruff check passed" >> $GITHUB_STEP_SUMMARY
-      - name: setup pytest
-        run: |
-          python -m pytest
-          echo "pytest passed" >> $GITHUB_STEP_SUMMARY
-      - name: docker build
-        run: |
-          docker build -t python:v1 .
+        uses: action/checkout@v4
+        with:
+          fetch-depth: 1
+      
+      - name: Generate variable
+        id: vars
+        shell: bash
+        run:
+          SHORT_SHA = $(git rev-parse --short HEAD)
+          echo "SHORT_SHA = $SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "IMAGE_TAG = sha-$SHORT_SHA" >> GITHUB_OUTPUT
+
+
+  # python-build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v4
+  #     - name: setup python package
+  #       run: |
+  #         pip install -r requirements.txt
+  #         echo "Packages Installed" >> $GITHUB_STEP_SUMMARY
+  #     - name: setup ruff
+  #       run: |
+  #         ruff check .
+  #         echo "Ruff check passed" >> $GITHUB_STEP_SUMMARY
+  #     - name: setup pytest
+  #       run: |
+  #         python -m pytest
+  #         echo "pytest passed" >> $GITHUB_STEP_SUMMARY
+  #     - name: docker build
+  #       run: |
+  #         docker build -t python:v1 .
 
