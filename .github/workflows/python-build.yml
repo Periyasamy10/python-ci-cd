@@ -49,8 +49,7 @@ jobs:
           echo "Ref: ${{ github.ref }}"
           echo "Environment: ${{ inputs.env }}"
       
-      - name: Dump OIDC token claims
-        uses: github/actions-oidc-debugger@v1
+
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
