@@ -10,11 +10,7 @@ on:
       image-tag:
         description: "Image Tag"
         required: true
-        type: string 
-      aws-region:
-        description: "Region"
-        type: string
-        required: true   
+        type: string    
 
 permissions:
   contents: read
@@ -45,7 +41,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
-          aws-region: ${{ inputs.aws-region }}
+          aws-region: ${{ vars.aws-region }}
       
       - name: Login to ECR
         uses: aws-actions/amazon-ecr-login@v2
