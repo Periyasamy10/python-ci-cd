@@ -46,7 +46,7 @@ jobs:
         run: |
           SHORT_SHA=$(git rev-parse --short HEAD)
           echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_OUTPUT
-          echo "IMAGE_TAG=sha-$SHORT_SHA" >> GITHUB_OUTPUT
+          echo "IMAGE_TAG=sha-$SHORT_SHA" >> $GITHUB_OUTPUT
       
       - name: Print variables
         run: |
