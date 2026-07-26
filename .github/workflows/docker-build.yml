@@ -142,7 +142,7 @@ jobs:
           fetch-depth: 1
       
       - name: setup-python
-         uses: actions/setup-python@v5
+        uses: actions/setup-python@v5
         with:
           python_version: ${{ env.PYTHON_VERSION }}
           cache: pip
