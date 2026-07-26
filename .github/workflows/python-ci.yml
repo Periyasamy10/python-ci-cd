@@ -13,7 +13,11 @@ on:
 permissions:
   contents: read
   id-token: write
-  secret-scan: write
+  security-events: write
+
+concurrency:
+  group: python-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   Quality-Check:
