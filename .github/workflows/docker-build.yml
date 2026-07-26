@@ -91,7 +91,7 @@ jobs:
 
   pytest:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env | 'dev' }}
+    environment: ${{ inputs.env || 'dev' }}
     needs: prepare
     timeout-minutes: 15
 
@@ -131,7 +131,7 @@ jobs:
   
   snyk:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env | 'dev' }}
+    environment: ${{ inputs.env || 'dev' }}
     needs: prepare
     timeout-minutes: 15
 
