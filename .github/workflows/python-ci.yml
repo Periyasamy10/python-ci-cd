@@ -27,3 +27,11 @@ jobs:
     with:
       env: ${{ inputs.env || 'dev' }}
     secrets: inherit
+  
+  Python-Build:
+    uses: ./.github/workflows/python-ci.yml
+    needs: Quality-Check
+    with:
+      env: ${{ inputs.env || 'dev' }}
+      image_tag: ${{ needs.Quality-Check.outputs.image_tag }}
+    secre
