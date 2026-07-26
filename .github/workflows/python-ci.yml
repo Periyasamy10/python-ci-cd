@@ -34,4 +34,4 @@ jobs:
     with:
       env: ${{ inputs.env || 'dev' }}
       image_tag: ${{ needs.Quality-Check.outputs.image_tag }}
-    secre
+    secrets: inherit
