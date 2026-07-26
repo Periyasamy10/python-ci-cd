@@ -28,7 +28,7 @@ env:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.env }}
+    environment: ${{ inputs.env || 'dev'}}
 
     outputs:
       image_tag: ${{ steps.vars.outputs.IMAGE_TAG }}
