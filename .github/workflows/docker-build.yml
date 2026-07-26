@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "environment"
+        required: false
+        default: dev
 
 permissions:
   contents: read
@@ -11,18 +17,18 @@ permissions:
 
 concurrency:
   group: python-ci-${{ github.ref }}
-  cancel_in_progress: true
+  cancel-in-progress: true
 
 env:
   PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
   AWS_REGION: ${{ vars.AWS_REGION }}
   IMAGE_NAME: ${{ vars.IMAGE_NAME }}
 
-environment: dev
 
 jobs:
   prepare:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
 
     steps:
       - name: checkout
