@@ -33,5 +33,6 @@ jobs:
     needs: Quality-Check
     with:
       env: ${{ inputs.env || 'dev' }}
+      aws-region: ${{ env.AWS_REGION }}
       image-tag: ${{ needs.Quality-Check.outputs.image_tag }}
     secrets: inherit
