@@ -72,7 +72,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
-          cache-dependeny-path: requirements.txt
+          #cache-dependeny-path: requirements.txt
       
       - name: install dependeny
         run: |

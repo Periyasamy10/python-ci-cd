@@ -1,3 +1,8 @@
 Flask==3.1.2
 ruff
 pytest
+numpy
+pandas
+tensorflow
+scipy
+opencv-python
