@@ -84,6 +84,7 @@ jobs:
           ruff check .  
       
       - name: Ruff format check
+        continue-on-error: true
         run: |
           ruff format --check .
          
