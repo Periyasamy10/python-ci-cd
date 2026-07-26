@@ -30,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.env }}
 
+    outputs:
+      image_tag = ${{ steps.vars.outputs.IMAGE_TAG }}
+      short_sha = ${{ steps.vars.outputs.SHORT_SHA }}
+
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -39,10 +43,36 @@ jobs:
       - name: Generate variable
         id: vars
         shell: bash
-        run:
+        run: |
           SHORT_SHA=$(git rev-parse --short HEAD)
           echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_OUTPUT
           echo "IMAGE_TAG=sha-$SHORT_SHA" >> GITHUB_OUTPUT
+      
+      - name: Print variables
+        run: |
+          echo "$PYTHON_VERSION"
+          echo "$IMAGE_NAME"
+          echo "$AWS_REGION"
+  
+  ruff:
+    runs-on: ubuntu-latest
+    environment: dev
+    needs: prepare
+
+    timeout-minutes: 10
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
 
 
   # python-build:
