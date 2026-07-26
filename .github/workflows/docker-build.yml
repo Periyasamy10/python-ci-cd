@@ -178,22 +178,21 @@ jobs:
           name: synk-dependeny-scan
           path: dependeny-report.json
 
-    secret-scan:
-      runs-on: ubuntu-latest
-      environment: ${{ inputs.env || 'dev' }}
-      needs: prepare
-      timeout-minutes: 15
-
-      steps:
-        - name: checkout
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 1
-        
-        - name: Run Git leaks
-          uses: gitleaks/gitleaks-action@v2
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  secret-scan:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env || 'dev' }}
+    needs: prepare
+    timeout-minutes: 15
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      
+      - name: Run Git leaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
