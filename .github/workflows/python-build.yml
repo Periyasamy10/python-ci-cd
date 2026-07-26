@@ -49,7 +49,16 @@ jobs:
           echo "Ref: ${{ github.ref }}"
           echo "Environment: ${{ inputs.env }}"
       
-
+      - name: Check OIDC
+        run: |
+          echo "OIDC URL: $ACTIONS_ID_TOKEN_REQUEST_URL"
+      
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then
+            echo "OIDC NOT AVAILABLE"
+            exit 1
+          fi
+      
+          echo "OIDC AVAILABLE"
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
