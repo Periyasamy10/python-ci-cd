@@ -37,7 +37,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       
       - name: Login to ECR
-        uses: aws-actions/aws-ecr-login@v2
+        uses: aws-actions/amazon-ecr-login@v2
         id: login-ecr
       
       - name: Setup Buildx
