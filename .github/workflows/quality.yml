@@ -12,9 +12,6 @@ permissions:
   id-token: write
   security-events: write
 
-concurrency:
-  group: python-ci-${{ github.ref }}
-  cancel-in-progress: true
 
 env:
   PYTHON_VERSION: ${{ vars.PYTHON_VERSION }}
